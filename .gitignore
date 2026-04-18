@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Node
+node_modules/
+.next/
+dist/
+
+# Redis
+dump.rdb
+
+# OS
+.DS_Store
