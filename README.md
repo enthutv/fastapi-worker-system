@@ -1,27 +1,53 @@
+## Frontend UI
+https://github.com/enthutv/fastapi-worker-ui
+
 # FastAPI Worker System
 
-A production-style starter project that demonstrates how to handle CPU-bound background jobs in FastAPI without blocking API responsiveness.
+A distributed background job processing system with real-time monitoring.
 
-## Problem
+---
 
-FastAPI endpoints should respond quickly, but CPU-heavy work can block request handling if executed directly inside the API process.
+## Overview
 
-## Solution
+This system demonstrates how to handle CPU-intensive workloads without blocking the main application by offloading execution to distributed workers.
 
-This project submits CPU-bound jobs to a separate process using `ProcessPoolExecutor`, then tracks progress with task IDs and a status endpoint.
+It combines FastAPI, Celery, Redis, and WebSockets to provide a scalable and responsive architecture.
+
+---
+
+## Tech Stack
+
+- FastAPI (API layer)
+- Celery (distributed workers)
+- Redis (message broker)
+- WebSocket (real-time updates)
+
+---
+
+## Features
+
+- Asynchronous background task execution
+- Real-time task status updates via WebSocket
+- Live logs streaming
+- Task history tracking
+- CPU workload simulation
+
+---
 
 ## Architecture
 
-Client -> FastAPI API -> ProcessPoolExecutor Worker -> In-memory Task Registry
+Frontend (Next.js)  
+⬇  
+FastAPI (API)  
+⬇  
+Celery Workers  
+⬇  
+Redis Queue  
 
-## Endpoints
+---
 
-### `POST /scan`
+## Run Locally
 
-Start a CPU-heavy scan.
-
-Request:
-```json
-{
-  "number": 500000
-}
+### Backend
+```bash
+uvicorn app.main:app --reload
